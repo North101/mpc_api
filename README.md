@@ -40,4 +40,4 @@ python3 -m mpc_api create jhakbc8yc78slkjajbcs Rules.json Consternation-on-the-C
 `data-files`: JSON file(s) containing mpc image data created from running `python3 -m mpc_api upload <path>`
 
 ## Example Images:
-[Consternation on the Constellation](https://mythosbusters.com/custom-scenarios/) by the Mythos Busters is used only as an example (with permission) and are not otherwise affiliated.
+The example images are taken from the Arkham Horror: The Card Game custom scenario [Consternation on the Constellation](https://mythosbusters.com/custom-scenarios/) by the Mythos Busters (with permission) and are not otherwise affiliated.

@@ -6,7 +6,7 @@ import inquirer
 from inquirer.themes import GreenPassion
 
 from . import project
-from . import image_upload
+from . import upload
 
 
 def create_project(session_id, settings, files):
@@ -78,25 +78,34 @@ def create_project(session_id, settings, files):
 
 
 def upload_images(path):
-  group_images = image_upload.find_images(path)
+  group_images = upload.find_images(path)
   questions = [
     inquirer.Checkbox(
       'groups',
       message='Which groups of cards would you like to upload',
       choices=[
-        (f'{group} ({len(cards)} cards)', group)
-        for group, cards in group_images.items()
+        (f"{group} (front: {front_count}, back: {back_count})", group)
+        for (group, front_count, back_count) in (
+          (
+            group,
+            sum(1 for sides in cards if 'front' in sides),
+            sum(1 for sides in cards if 'back' in sides),
+          )
+          for group, cards in group_images.items()
+        )
       ],
       default=list(group_images),
     ),
   ]
   answers = inquirer.prompt(questions, theme=GreenPassion())
 
-  data = image_upload.upload_group_images({
+  data = upload.upload_group_images({
     group: cards
     for group, cards in group_images.items()
     if group in answers['groups']
   })
+  upload.fill_in_missing_images(data)
+
   for group, cards in data.items():
     with open(f'{group}.json', 'w') as f:
       json.dump(cards, f)
