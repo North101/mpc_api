@@ -1,3 +1,7 @@
+MakePlayingCards API
+
+This script allow you to upload images and create a project on www.makeplayingcards.com
+
 # Usage:
 
 Requires python3
