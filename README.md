@@ -38,3 +38,6 @@ python3 -m mpc_api create jhakbc8yc78slkjajbcs Rules.json Consternation-on-the-C
 
 `session_id`: This is the value of the `ASP.NET_SessionId` cookie from www.makeplayingcards.com and is unfortunatly required to view the created project. You do not need to be logged in and this value is only shared with www.makeplayingcards.com.  
 `data-files`: JSON file(s) containing mpc image data created from running `python3 -m mpc_api upload <path>`
+
+## Example Images:
+[Consternation on the Constellation](https://mythosbusters.com/custom-scenarios/) by the Mythos Busters is used only as an example (with permission) and are not otherwise affiliated.
