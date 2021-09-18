@@ -121,8 +121,8 @@ def fill_in_missing_images(data):
         info = sides.get(side)
         if info is None:
           sides[side] = next((
-            info2
-            for sides2 in cards[index+1:]
-            for side2, info2 in sides2.items()
-            if side2 == side
+            other_info
+            for other_sides in cards[index+1:]
+            for other_side, other_info in other_sides.items()
+            if other_side == side
           ), None)
