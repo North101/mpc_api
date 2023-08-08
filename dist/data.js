@@ -26338,22 +26338,22 @@ const _ = [
     code: "mpc",
     name: "MakePlayingCards",
     urls: [
-      "https://www.makeplayingcards.com"
+      "www.makeplayingcards.com"
     ]
   },
   {
     code: "ps",
     name: "PrinterStudio",
     urls: [
-      "https://www.printerstudio.co.uk",
-      "https://www.printerstudio.com"
+      "www.printerstudio.co.uk",
+      "www.printerstudio.com"
     ]
   },
   {
     code: "pshk",
     name: "PrinterStudio",
     urls: [
-      "https://www.printerstudio.com.hk"
+      "www.printerstudio.com.hk"
     ]
   }
 ], d = [
