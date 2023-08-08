@@ -1,0 +1,36 @@
+{
+  "name": "mpc_api",
+  "version": "1.0.0",
+  "repository": "https://www.github.com/North101/mpc_api",
+  "author": "North101",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "./dist/mpc_api.umd.cjs",
+  "module": "./dist/mpc_api.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mpc_api.js",
+      "require": "./dist/mpc_api.umd.cjs"
+    },
+    "./data": {
+      "import": "./dist/data.js",
+      "require": "./dist/data.umd.cjs"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "fetch-retry": "^5.0.6"
+  },
+  "devDependencies": {
+    "@types/node": "20",
+    "path": "^0.12.7",
+    "typescript": "^5.0.2",
+    "vite": "^4.1.4",
+    "vite-plugin-dts": "^3.5.1"
+  }
+}
