@@ -5,12 +5,12 @@ import finishes from './data/finish.json'
 import cardStocks from './data/card_stock.json'
 import packagings from './data/packaging.json'
 
-type SiteData = Site[];
+type SiteData = Site[]
 
 export interface Site {
-  code: string;
-  name: string;
-  urls: string[];
+  code: string
+  name: string
+  urls: string[]
 }
 
 export type UnitData = {
@@ -89,12 +89,12 @@ export type PrintType = {
 }
 
 interface Data {
-  units: UnitData;
-  sites: SiteData;
-  printTypes: PrintTypeData;
-  finishes: FinishData;
-  cardStocks: CardStockData;
-  packagings: PackagingData;
+  units: UnitData
+  sites: SiteData
+  printTypes: PrintTypeData
+  finishes: FinishData
+  cardStocks: CardStockData
+  packagings: PackagingData
 }
 
 const data: Data = {
@@ -106,4 +106,4 @@ const data: Data = {
   packagings,
 }
 
-export default data;
+export default data

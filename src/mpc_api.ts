@@ -1,10 +1,10 @@
-import fetchRetry from 'fetch-retry';
+import fetchRetry from 'fetch-retry'
 
-const fetch = fetchRetry(window.fetch);
+const fetch = fetchRetry(window.fetch)
 
-const createUrl = (url: string, params: { [key: string]: string; }) => {
-  if (!params) return url;
-  return `${url}?${new URLSearchParams(params)}`;
+const createUrl = (url: string, params: { [key: string]: string }) => {
+  if (!params) return url
+  return `${url}?${new URLSearchParams(params)}`
 }
 
 interface UnpickInfo {
@@ -59,53 +59,53 @@ interface PixelInfo {
 }
 
 export interface CardSettings {
-  url: string;
-  unit: string;
-  product: string;
-  frontDesign: string;
-  backDesign: string;
-  width: number;
-  height: number;
-  dpi: number;
-  filter: string;
-  auto: boolean;
-  scale: number;
-  sortNo: number;
-  applyMask: boolean;
+  url: string
+  unit: string
+  product: string
+  frontDesign: string
+  backDesign: string
+  width: number
+  height: number
+  dpi: number
+  filter: string
+  auto: boolean
+  scale: number
+  sortNo: number
+  applyMask: boolean
 }
 
 export interface Settings extends CardSettings {
-  name?: string;
-  cardStock: string;
-  printType: string;
-  finish: string;
-  packaging: string;
-  maxCards: number;
+  name?: string
+  cardStock: string
+  printType: string
+  finish: string
+  packaging: string
+  maxCards: number
 }
 
 export interface UploadedImage {
-  count: number;
-  front?: CompressedImageData;
-  back?: CompressedImageData;
+  count: number
+  front?: CompressedImageData
+  back?: CompressedImageData
 }
 
 export interface CompressedImageData {
-  Name?: string;
-  ID: string;
-  SourceID: string;
-  Exp: string;
-  Width: number;
-  Height: number;
+  Name?: string
+  ID: string
+  SourceID: string
+  Exp: string
+  Width: number
+  Height: number
 }
 
 const parseXml = (text: string) => {
-  const parser = new DOMParser();
-  return parser.parseFromString(text, 'text/xml');
+  const parser = new DOMParser()
+  return parser.parseFromString(text, 'text/xml')
 }
 
 const parseHtml = (text: string) => {
-  const parser = new DOMParser();
-  return parser.parseFromString(text, 'text/html');
+  const parser = new DOMParser()
+  return parser.parseFromString(text, 'text/html')
 }
 
 const select1 = (root: Document, xpath: string) => {
@@ -125,28 +125,28 @@ function* select(root: Document, xpath: string) {
     null,
     XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
     null,
-  );
+  )
   for (var i = 0; i < nodes.snapshotLength; i++) {
-    const node = nodes.snapshotItem(i);
-    if (node) yield node;
+    const node = nodes.snapshotItem(i)
+    if (node) yield node
   }
 }
 
 interface StepFormData {
-  [key: string]: string;
+  [key: string]: string
 }
 
 const extractFormData = (html: Document) => {
-  const formData: StepFormData = {};
+  const formData: StepFormData = {}
   for (const field of select(html, '//form[@id="form1"]/div[@class="aspNetHidden"]/input[@type="hidden"]')) {
-    const e = field as HTMLInputElement;
-    formData[e.name] = e.value;
+    const e = field as HTMLInputElement
+    formData[e.name] = e.value
   }
   for (const field of select(html, '//form[@id="form1"]/input[@type="hidden"]')) {
-    const e = field as HTMLInputElement;
-    formData[e.name] = e.value;
+    const e = field as HTMLInputElement
+    formData[e.name] = e.value
   }
-  return formData;
+  return formData
 }
 
 export const initProject = async (settings: Settings, cards: UploadedImage[]): Promise<string> => {
@@ -167,22 +167,22 @@ export const initProject = async (settings: Settings, cards: UploadedImage[]): P
   }), {
     retries: 5,
     retryDelay: 500,
-  });
-  const html = parseHtml(await r.text());
+  })
+  const html = parseHtml(await r.text())
   const ssid = select1(html, '/html/body/form[@id="form1"]/@action')!
     .textContent!
-    .replace('./dn_playingcards_front_dynamic.aspx?ssid=', '');
-  return ssid;
+    .replace('./dn_playingcards_front_dynamic.aspx?ssid=', '')
+  return ssid
 }
 
 export const saveFrontSettings = async (projectId: string, settings: Settings, cards: UploadedImage[]) => {
-  const count = cards.length;
+  const count = cards.length
 
   const url = createUrl(`${settings.url}/products/playingcard/design/dn_playingcards_mode_nf.aspx`, {
     ssid: projectId,
-  });
+  })
 
-  const r = await fetch(url);
+  const r = await fetch(url)
   const formData = {
     ...extractFormData(parseHtml(await r.text())),
     '__EVENTTARGET': 'btn_next_step',
@@ -194,9 +194,9 @@ export const saveFrontSettings = async (projectId: string, settings: Settings, c
     'hidd_design_count': `${count}`,
   }
 
-  const body = new FormData();
+  const body = new FormData()
   for (const [key, value] of Object.entries(formData)) {
-    body.append(key, value);
+    body.append(key, value)
   }
 
   return fetch(url, {
@@ -204,7 +204,7 @@ export const saveFrontSettings = async (projectId: string, settings: Settings, c
     body: body,
     retries: 5,
     retryDelay: 500,
-  });
+  })
 }
 
 export const saveBackSettings = async (projectId: string, settings: Settings, cards: UploadedImage[]) => {
@@ -212,19 +212,19 @@ export const saveBackSettings = async (projectId: string, settings: Settings, ca
 
   const url = createUrl(`${settings.url}/products/playingcard/design/dn_playingcards_mode_nb.aspx`, {
     ssid: projectId,
-  });
+  })
 
-  const r = await fetch(url);
+  const r = await fetch(url)
   const formData = {
     ...extractFormData(parseHtml(await r.text())),
     '__EVENTTARGET': 'btn_next_step',
     'hidd_mode': 'ImageText',
     'hidd_design_count': `${count}`,
-  };
+  }
 
-  const body = new FormData();
+  const body = new FormData()
   for (const [key, value] of Object.entries(formData)) {
-    body.append(key, value);
+    body.append(key, value)
   }
 
   return fetch(url, {
@@ -232,23 +232,23 @@ export const saveBackSettings = async (projectId: string, settings: Settings, ca
     body: body,
     retries: 5,
     retryDelay: 500,
-  });
+  })
 }
 
 export const saveFrontImageStep = async (projectId: string, settings: Settings) => {
   const url = createUrl(`${settings.url}/products/playingcard/design/dn_playingcards_front_dynamic.aspx`, {
     ssid: projectId,
-  });
+  })
 
-  const r = await fetch(url);
+  const r = await fetch(url)
   const formData: StepFormData = {
     ...extractFormData(parseHtml(await r.text())),
     '__EVENTTARGET': 'btn_next_step',
-  };
+  }
 
-  const body = new FormData();
+  const body = new FormData()
   for (const [key, value] of Object.entries(formData)) {
-    body.append(key, value);
+    body.append(key, value)
   }
 
   await fetch(url, {
@@ -256,29 +256,29 @@ export const saveFrontImageStep = async (projectId: string, settings: Settings) 
     body: body,
     retries: 5,
     retryDelay: 500,
-  });
+  })
 
-  const hdParameter = JSON.parse(formData['hdParameter']);
+  const hdParameter = JSON.parse(formData['hdParameter'])
   return {
     pixelInfo: JSON.parse(hdParameter.Base.PixelInfo) as PixelInfo,
     unpickInfo: JSON.parse(hdParameter.Base.UnpickInfo)[0] as UnpickInfo,
-  };
+  }
 }
 
 export const saveFrontTextStep = async (projectId: string, settings: Settings) => {
   const url = createUrl(`${settings.url}/design/dn_texteditor_front.aspx`, {
     ssid: projectId,
-  });
+  })
 
-  const r = await fetch(url);
+  const r = await fetch(url)
   const formData = {
     ...extractFormData(parseHtml(await r.text())),
     '__EVENTTARGET': 'btn_next_step',
-  };
+  }
 
-  const body = new FormData();
+  const body = new FormData()
   for (const [key, value] of Object.entries(formData)) {
-    body.append(key, value);
+    body.append(key, value)
   }
 
   await fetch(url, {
@@ -286,23 +286,23 @@ export const saveFrontTextStep = async (projectId: string, settings: Settings) =
     body: body,
     retries: 5,
     retryDelay: 500,
-  });
+  })
 }
 
 export const saveBackImageStep = async (projectId: string, settings: Settings) => {
   const url = createUrl(`${settings.url}/products/playingcard/design/dn_playingcards_back_dynamic.aspx`, {
     ssid: projectId,
-  });
+  })
 
-  const r = await fetch(url);
+  const r = await fetch(url)
   const formData = {
     ...extractFormData(parseHtml(await r.text())),
     '__EVENTTARGET': 'btn_next_step',
-  };
+  }
 
-  const body = new FormData();
+  const body = new FormData()
   for (const [key, value] of Object.entries(formData)) {
-    body.append(key, value);
+    body.append(key, value)
   }
 
   await fetch(url, {
@@ -310,23 +310,23 @@ export const saveBackImageStep = async (projectId: string, settings: Settings) =
     body: body,
     retries: 5,
     retryDelay: 500,
-  });
+  })
 }
 
 export const saveBackTextStep = async (projectId: string, settings: Settings) => {
   const url = createUrl(`${settings.url}/design/dn_texteditor_back.aspx`, {
     ssid: projectId,
-  });
+  })
 
-  const r = await fetch(url);
+  const r = await fetch(url)
   const formData = {
     ...extractFormData(parseHtml(await r.text())),
     '__EVENTTARGET': 'btn_next_step',
-  };
+  }
 
-  const body = new FormData();
+  const body = new FormData()
   for (const [key, value] of Object.entries(formData)) {
-    body.append(key, value);
+    body.append(key, value)
   }
 
   await fetch(url, {
@@ -334,7 +334,7 @@ export const saveBackTextStep = async (projectId: string, settings: Settings) =>
     body: body,
     retries: 5,
     retryDelay: 500,
-  });
+  })
 }
 
 export const uncompressImageData = (settings: Settings, data: CompressedImageData) => {
@@ -385,25 +385,25 @@ export const uncompressCropData = (data: CompressedImageData, pixelInfo: PixelIn
 }
 
 export const saveSession = async (projectId: string, settings: Settings, cards: UploadedImage[], pixelInfo: PixelInfo, unpickInfo: UnpickInfo) => {
-  const body = new FormData();
+  const body = new FormData()
   // list of front images for the project
-  body.append('frontImageList', JSON.stringify(cards.map(sides => sides.front ? uncompressImageData(settings, sides.front) : null)));
+  body.append('frontImageList', JSON.stringify(cards.map(sides => sides.front ? uncompressImageData(settings, sides.front) : null)))
   // list of front images assigned to cards
-  body.append('frontCropInfo', JSON.stringify(cards.map(sides => sides.front ? uncompressCropData(sides.front, pixelInfo, unpickInfo) : null)));
+  body.append('frontCropInfo', JSON.stringify(cards.map(sides => sides.front ? uncompressCropData(sides.front, pixelInfo, unpickInfo) : null)))
   // page designer for multiple front cards
-  body.append('frontDesignModePage', 'dn_playingcards_mode_nf.aspx');
-  body.append('frontTextInfo', [...new Array(cards.length)].map(() => '').join('%u25C7'));
+  body.append('frontDesignModePage', 'dn_playingcards_mode_nf.aspx')
+  body.append('frontTextInfo', [...new Array(cards.length)].map(() => '').join('%u25C7'))
   // list of back images for the project
-  body.append('backImageList', JSON.stringify(cards.map(sides => sides.back ? uncompressImageData(settings, sides.back) : null)));
+  body.append('backImageList', JSON.stringify(cards.map(sides => sides.back ? uncompressImageData(settings, sides.back) : null)))
   // list of back images assigned to cards
-  body.append('backCropInfo', JSON.stringify(cards.map(sides => sides.back ? uncompressCropData(sides.back, pixelInfo, unpickInfo) : null)));
-  body.append('backTextInfo', [...new Array(cards.length)].map(() => '').join('%u25C7'));
+  body.append('backCropInfo', JSON.stringify(cards.map(sides => sides.back ? uncompressCropData(sides.back, pixelInfo, unpickInfo) : null)))
+  body.append('backTextInfo', [...new Array(cards.length)].map(() => '').join('%u25C7'))
   // page designer for multiple back cards
-  body.append('backDesignModePage', 'dn_playingcards_mode_nb.aspx');
+  body.append('backDesignModePage', 'dn_playingcards_mode_nb.aspx')
   // no idea
-  body.append('expand', 'null');
+  body.append('expand', 'null')
   // no idea
-  body.append('mapinfo', '[]');
+  body.append('mapinfo', '[]')
 
   return fetch(createUrl(`${settings.url}/design/dn_keep_session.aspx`, {
     ssid: projectId,
@@ -412,13 +412,13 @@ export const saveSession = async (projectId: string, settings: Settings, cards: 
     body: body,
     retries: 5,
     retryDelay: 500,
-  });
+  })
 }
 
 export const saveProject = async (projectId: string, settings: Settings) => {
-  if (!settings.name) return;
+  if (!settings.name) return
 
-  const body = new FormData();
+  const body = new FormData()
   body.append('name', settings.name)
 
   return fetch(createUrl(`${settings.url}/design/dn_project_save.aspx`, {
@@ -428,29 +428,29 @@ export const saveProject = async (projectId: string, settings: Settings) => {
     body: body,
     retries: 5,
     retryDelay: 500,
-  });
+  })
 }
 
 export const createProject = async (settings: Settings, cards: UploadedImage[]) => {
   const expandedCards = cards.reduce<UploadedImage[]>((e, card) => {
     for (let i = 0; i < card.count; i++) {
-      e.push(card);
+      e.push(card)
     }
-    return e;
-  }, []);
+    return e
+  }, [])
 
-  const projectId = await initProject(settings, expandedCards);
+  const projectId = await initProject(settings, expandedCards)
 
-  await saveFrontSettings(projectId, settings, expandedCards);
-  await saveBackSettings(projectId, settings, expandedCards);
-  const { pixelInfo, unpickInfo } = await saveFrontImageStep(projectId, settings);
-  await saveFrontTextStep(projectId, settings);
-  await saveBackImageStep(projectId, settings);
-  await saveBackTextStep(projectId, settings);
-  await saveSession(projectId, settings, expandedCards, pixelInfo, unpickInfo);
-  await saveProject(projectId, settings);
+  await saveFrontSettings(projectId, settings, expandedCards)
+  await saveBackSettings(projectId, settings, expandedCards)
+  const { pixelInfo, unpickInfo } = await saveFrontImageStep(projectId, settings)
+  await saveFrontTextStep(projectId, settings)
+  await saveBackImageStep(projectId, settings)
+  await saveBackTextStep(projectId, settings)
+  await saveSession(projectId, settings, expandedCards, pixelInfo, unpickInfo)
+  await saveProject(projectId, settings)
 
-  return `${settings.url}/design/dn_preview_layout.aspx?ssid=${projectId}`;
+  return `${settings.url}/design/dn_preview_layout.aspx?ssid=${projectId}`
 }
 
 export const createAutoSplitProject = async (settings: Settings, cards: UploadedImage[]) => {
@@ -489,55 +489,55 @@ export const createAutoSplitProject = async (settings: Settings, cards: Uploaded
 }
 
 const getDateTime = async (url: string) => {
-  const r = await fetch(`${url}/api/common/getdatetime.ashx`);
-  return await r.text().then(e => e.replace(/\-/g, '/'));
+  const r = await fetch(`${url}/api/common/getdatetime.ashx`)
+  return await r.text().then(e => e.replace(/\-/g, '/'))
 }
 
 export const uploadImage = async (settings: CardSettings, side: string, image: File) => {
-  const st = await getDateTime(settings.url);
+  const st = await getDateTime(settings.url)
 
-  const body = new FormData();
-  body.append('fileData', image);
-  body.append('userName', '');
-  body.append('layer', side);
-  body.append('st', st);
-  body.append('pt', '0');
-  body.append('ip', '');
+  const body = new FormData()
+  body.append('fileData', image)
+  body.append('userName', '')
+  body.append('layer', side)
+  body.append('st', st)
+  body.append('pt', '0')
+  body.append('ip', '')
 
   const r = await fetch(`${settings.url}/uploader/up_product.aspx`, {
     method: 'POST',
     body: body,
     retries: 5,
     retryDelay: 500,
-  });
-  const root = parseHtml(await r.text());
-  return JSON.parse(select1(root, '/html/body/form/input[@id="hidd_image_info"]/@value')!.textContent!);
+  })
+  const root = parseHtml(await r.text())
+  return JSON.parse(select1(root, '/html/body/form/input[@id="hidd_image_info"]/@value')!.textContent!)
 }
 
 export const analysisImage = async (settings: CardSettings, side: string, index: number, value: any) => {
-  const body = new FormData();
-  body.append('photoindex', `${index}`);
-  body.append('source', JSON.stringify(value));
-  body.append('face', side);
-  body.append('width', `${settings.width}`);
-  body.append('height', `${settings.height}`);
-  body.append('dpi', `${settings.dpi}`);
-  body.append('auto', settings.auto ? 'Y' : 'N');
-  body.append('scale', `${settings.scale}`);
-  body.append('filter', '');
-  body.append('productCode', settings.product);
-  body.append('designCode', side === 'front' ? settings.frontDesign : settings.backDesign);
-  body.append('sortNo', `${settings.sortNo}`);
-  body.append('applyMask', settings.applyMask ? 'Y' : 'N');
+  const body = new FormData()
+  body.append('photoindex', `${index}`)
+  body.append('source', JSON.stringify(value))
+  body.append('face', side)
+  body.append('width', `${settings.width}`)
+  body.append('height', `${settings.height}`)
+  body.append('dpi', `${settings.dpi}`)
+  body.append('auto', settings.auto ? 'Y' : 'N')
+  body.append('scale', `${settings.scale}`)
+  body.append('filter', '')
+  body.append('productCode', settings.product)
+  body.append('designCode', side === 'front' ? settings.frontDesign : settings.backDesign)
+  body.append('sortNo', `${settings.sortNo}`)
+  body.append('applyMask', settings.applyMask ? 'Y' : 'N')
 
   const r = await fetch(`${settings.url}/design/dn_product_analysis_photo.aspx`, {
     method: 'POST',
     body: body,
     retries: 5,
     retryDelay: 500,
-  });
-  const root = parseXml(await r.text());
-  return JSON.parse(select1(root, '/Values/Value/text()')!.textContent!).CropInfo;
+  })
+  const root = parseXml(await r.text())
+  return JSON.parse(select1(root, '/Values/Value/text()')!.textContent!).CropInfo
 }
 
 export const compressImageData = (analysedImage: any, uploadedImage: any): CompressedImageData => {
