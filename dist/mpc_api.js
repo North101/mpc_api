@@ -287,7 +287,7 @@ const x = (e) => {
   IsEmpty: !1
 }], Y = async (e, r, t, a, n) => {
   const c = new FormData();
-  return c.append("frontImageList", JSON.stringify(t.map((o) => o.front ? P(r, o.front) : null))), c.append("frontCropInfo", JSON.stringify(t.map((o) => o.front ? N(o.front, a, n) : null))), c.append("frontDesignModePage", "dn_playingcards_mode_nf.aspx"), c.append("frontTextInfo", [...new Array(t.length)].map(() => "").join("%u25C7")), c.append("backImageList", JSON.stringify(t.map((o) => o.back ? P(r, o.back) : null))), c.append("backCropInfo", JSON.stringify(t.map((o) => o.back ? N(o.back, a, n) : null))), c.append("backTextInfo", [...new Array(t.length)].map(() => "").join("%u25C7")), c.append("backDesignModePage", "dn_playingcards_mode_nb.aspx"), c.append("expand", "null"), c.append("mapinfo", "[]"), p(m(`${r.url}/design/dn_keep_session.aspx`, {
+  return c.append("frontImageList", JSON.stringify(t.map((o) => o.front ? P(r, o.front) : null))), c.append("frontCropInfo", JSON.stringify(t.map((o) => o.front ? N(o.front, a, n) : null))), c.append("frontDesignModePage", "dn_playingcards_mode_nf.aspx"), c.append("frontTextInfo", [...new Array(t.length)].map(() => "").join("%u25C7")), c.append("backImageList", JSON.stringify(t.map((o) => o.back ? P(r, o.back) : null))), c.append("backCropInfo", JSON.stringify(t.map((o) => o.back ? N(o.back, a, n) : null))), c.append("backTextInfo", [...new Array(t.length)].map(() => "").join("%u25C7")), c.append("backDesignModePage", "dn_playingcards_mode_nb.aspx"), c.append("expand", "null"), c.append("mapinfo", "[]"), p(m(`${r.url}/design/dn_keep_transition_data.aspx`, {
     ssid: e
   }), {
     method: "POST",

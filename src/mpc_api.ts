@@ -405,7 +405,7 @@ export const saveSession = async (projectId: string, settings: Settings, cards: 
   // no idea
   body.append('mapinfo', '[]')
 
-  return fetch(createUrl(`${settings.url}/design/dn_keep_session.aspx`, {
+  return fetch(createUrl(`${settings.url}/design/dn_keep_transition_data.aspx`, {
     ssid: projectId,
   }), {
     method: 'POST',
