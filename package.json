@@ -6,16 +6,16 @@
   "license": "MIT",
   "private": true,
   "type": "module",
-  "main": "./dist/mpc_api.umd.cjs",
+  "main": "./dist/mpc_api.cjs",
   "module": "./dist/mpc_api.js",
   "exports": {
     ".": {
       "import": "./dist/mpc_api.js",
-      "require": "./dist/mpc_api.umd.cjs"
+      "require": "./dist/mpc_api.cjs"
     },
     "./data": {
       "import": "./dist/data.js",
-      "require": "./dist/data.umd.cjs"
+      "require": "./dist/data.cjs"
     }
   },
   "scripts": {
