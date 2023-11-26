@@ -7,8 +7,8 @@ var $ = { exports: {} };
   (function(t, a) {
     e.exports = a();
   })(A, function() {
-    var t = function(c, o) {
-      if (o = o || {}, typeof c != "function")
+    var t = function(i, o) {
+      if (o = o || {}, typeof i != "function")
         throw new n("fetch must be a function");
       if (typeof o != "object")
         throw new n("defaults must be an object");
@@ -18,80 +18,80 @@ var $ = { exports: {} };
         throw new n("retryDelay must be a positive integer or a function returning a positive integer");
       if (o.retryOn !== void 0 && !Array.isArray(o.retryOn) && typeof o.retryOn != "function")
         throw new n("retryOn property expects an array or function");
-      var i = {
+      var s = {
         retries: 3,
         retryDelay: 1e3,
         retryOn: []
       };
-      return o = Object.assign(i, o), function(f, s) {
-        var h = o.retries, g = o.retryDelay, w = o.retryOn;
-        if (s && s.retries !== void 0)
-          if (a(s.retries))
-            h = s.retries;
+      return o = Object.assign(s, o), function(u, d) {
+        var b = o.retries, x = o.retryDelay, _ = o.retryOn;
+        if (d && d.retries !== void 0)
+          if (a(d.retries))
+            b = d.retries;
           else
             throw new n("retries must be a positive integer");
-        if (s && s.retryDelay !== void 0)
-          if (a(s.retryDelay) || typeof s.retryDelay == "function")
-            g = s.retryDelay;
+        if (d && d.retryDelay !== void 0)
+          if (a(d.retryDelay) || typeof d.retryDelay == "function")
+            x = d.retryDelay;
           else
             throw new n("retryDelay must be a positive integer or a function returning a positive integer");
-        if (s && s.retryOn)
-          if (Array.isArray(s.retryOn) || typeof s.retryOn == "function")
-            w = s.retryOn;
+        if (d && d.retryOn)
+          if (Array.isArray(d.retryOn) || typeof d.retryOn == "function")
+            _ = d.retryOn;
           else
             throw new n("retryOn property expects an array or function");
-        return new Promise(function(O, D) {
-          var v = function(u) {
-            var S = typeof Request < "u" && f instanceof Request ? f.clone() : f;
-            c(S, s).then(function(l) {
-              if (Array.isArray(w) && w.indexOf(l.status) === -1)
+        return new Promise(function(O, w) {
+          var v = function(y) {
+            var S = typeof Request < "u" && u instanceof Request ? u.clone() : u;
+            i(S, d).then(function(l) {
+              if (Array.isArray(_) && _.indexOf(l.status) === -1)
                 O(l);
-              else if (typeof w == "function")
+              else if (typeof _ == "function")
                 try {
-                  return Promise.resolve(w(u, null, l)).then(function(y) {
-                    y ? b(u, null, l) : O(l);
-                  }).catch(D);
-                } catch (y) {
-                  D(y);
+                  return Promise.resolve(_(y, null, l)).then(function(f) {
+                    f ? g(y, null, l) : O(l);
+                  }).catch(w);
+                } catch (f) {
+                  w(f);
                 }
               else
-                u < h ? b(u, null, l) : O(l);
+                y < b ? g(y, null, l) : O(l);
             }).catch(function(l) {
-              if (typeof w == "function")
+              if (typeof _ == "function")
                 try {
-                  Promise.resolve(w(u, l, null)).then(function(y) {
-                    y ? b(u, l, null) : D(l);
-                  }).catch(function(y) {
-                    D(y);
+                  Promise.resolve(_(y, l, null)).then(function(f) {
+                    f ? g(y, l, null) : w(l);
+                  }).catch(function(f) {
+                    w(f);
                   });
-                } catch (y) {
-                  D(y);
+                } catch (f) {
+                  w(f);
                 }
               else
-                u < h ? b(u, l, null) : D(l);
+                y < b ? g(y, l, null) : w(l);
             });
           };
-          function b(u, S, l) {
-            var y = typeof g == "function" ? g(u, S, l) : g;
+          function g(y, S, l) {
+            var f = typeof x == "function" ? x(y, S, l) : x;
             setTimeout(function() {
-              v(++u);
-            }, y);
+              v(++y);
+            }, f);
           }
           v(0);
         });
       };
     };
-    function a(c) {
-      return Number.isInteger(c) && c >= 0;
+    function a(i) {
+      return Number.isInteger(i) && i >= 0;
     }
-    function n(c) {
-      this.name = "ArgumentError", this.message = c;
+    function n(i) {
+      this.name = "ArgumentError", this.message = i;
     }
     return t;
   });
 })($);
 var C = $.exports;
-const F = /* @__PURE__ */ R(C), p = F(window.fetch), m = (e, r) => r ? `${e}?${new URLSearchParams(r)}` : e, I = (e) => new DOMParser().parseFromString(e, "text/xml"), _ = (e) => new DOMParser().parseFromString(e, "text/html"), T = (e, r) => document.evaluate(
+const F = /* @__PURE__ */ R(C), c = F(window.fetch), m = (e, r) => r ? `${e}?${new URLSearchParams(r)}` : e, I = (e) => new DOMParser().parseFromString(e, "text/xml"), h = (e) => new DOMParser().parseFromString(e, "text/html"), T = (e, r) => document.evaluate(
   r,
   e,
   null,
@@ -111,7 +111,7 @@ function* E(e, r) {
     n && (yield n);
   }
 }
-const x = (e) => {
+const D = (e) => {
   const r = {};
   for (const t of E(e, '//form[@id="form1"]/div[@class="aspNetHidden"]/input[@type="hidden"]')) {
     const a = t;
@@ -122,8 +122,8 @@ const x = (e) => {
     r[a.name] = a.value;
   }
   return r;
-}, j = async (e, r) => {
-  const t = await p(m(`${e.url}/products/pro_item_process_flow.aspx`, {
+}, k = async (e, r) => {
+  const t = await c(m(`${e.url}/products/pro_item_process_flow.aspx`, {
     // Card type
     itemid: e.unit,
     // Card Stock
@@ -140,13 +140,13 @@ const x = (e) => {
   }), {
     retries: 5,
     retryDelay: 500
-  }), a = _(await t.text());
+  }), a = h(await t.text());
   return T(a, '/html/body/form[@id="form1"]/@action').textContent.replace("./dn_playingcards_front_dynamic.aspx?ssid=", "");
-}, k = async (e, r, t) => {
+}, j = async (e, r, t) => {
   const a = t.length, n = m(`${r.url}/products/playingcard/design/dn_playingcards_mode_nf.aspx`, {
     ssid: e
-  }), c = await p(n), o = {
-    ...x(_(await c.text())),
+  }), i = await c(n), o = {
+    ...D(h(await i.text())),
     __EVENTTARGET: "btn_next_step",
     hidd_mode: "ImageText",
     txt_card_number: `${a}`,
@@ -154,44 +154,44 @@ const x = (e) => {
     hidd_material_no: r.cardStock,
     hidd_packing_no: r.packaging,
     hidd_design_count: `${a}`
-  }, i = new FormData();
-  for (const [d, f] of Object.entries(o))
-    i.append(d, f);
-  return p(n, {
+  }, s = new FormData();
+  for (const [p, u] of Object.entries(o))
+    s.append(p, u);
+  return c(n, {
     method: "POST",
-    body: i,
+    body: s,
     retries: 5,
     retryDelay: 500
   });
 }, H = async (e, r, t) => {
   const a = t.length, n = m(`${r.url}/products/playingcard/design/dn_playingcards_mode_nb.aspx`, {
     ssid: e
-  }), c = await p(n), o = {
-    ...x(_(await c.text())),
+  }), i = await c(n), o = {
+    ...D(h(await i.text())),
     __EVENTTARGET: "btn_next_step",
     hidd_mode: "ImageText",
     hidd_design_count: `${a}`
-  }, i = new FormData();
-  for (const [d, f] of Object.entries(o))
-    i.append(d, f);
-  return p(n, {
+  }, s = new FormData();
+  for (const [p, u] of Object.entries(o))
+    s.append(p, u);
+  return c(n, {
     method: "POST",
-    body: i,
+    body: s,
     retries: 5,
     retryDelay: 500
   });
 }, M = async (e, r) => {
   const t = m(`${r.url}/products/playingcard/design/dn_playingcards_front_dynamic.aspx`, {
     ssid: e
-  }), a = await p(t), n = {
-    ...x(_(await a.text())),
+  }), a = await c(t), n = {
+    ...D(h(await a.text())),
     __EVENTTARGET: "btn_next_step"
-  }, c = new FormData();
-  for (const [i, d] of Object.entries(n))
-    c.append(i, d);
-  await p(t, {
+  }, i = new FormData();
+  for (const [s, p] of Object.entries(n))
+    i.append(s, p);
+  await c(t, {
     method: "POST",
-    body: c,
+    body: i,
     retries: 5,
     retryDelay: 500
   });
@@ -203,45 +203,45 @@ const x = (e) => {
 }, J = async (e, r) => {
   const t = m(`${r.url}/design/dn_texteditor_front.aspx`, {
     ssid: e
-  }), a = await p(t), n = {
-    ...x(_(await a.text())),
+  }), a = await c(t), n = {
+    ...D(h(await a.text())),
     __EVENTTARGET: "btn_next_step"
-  }, c = new FormData();
-  for (const [o, i] of Object.entries(n))
-    c.append(o, i);
-  await p(t, {
+  }, i = new FormData();
+  for (const [o, s] of Object.entries(n))
+    i.append(o, s);
+  await c(t, {
     method: "POST",
-    body: c,
+    body: i,
     retries: 5,
     retryDelay: 500
   });
 }, V = async (e, r) => {
   const t = m(`${r.url}/products/playingcard/design/dn_playingcards_back_dynamic.aspx`, {
     ssid: e
-  }), a = await p(t), n = {
-    ...x(_(await a.text())),
+  }), a = await c(t), n = {
+    ...D(h(await a.text())),
     __EVENTTARGET: "btn_next_step"
-  }, c = new FormData();
-  for (const [o, i] of Object.entries(n))
-    c.append(o, i);
-  await p(t, {
+  }, i = new FormData();
+  for (const [o, s] of Object.entries(n))
+    i.append(o, s);
+  await c(t, {
     method: "POST",
-    body: c,
+    body: i,
     retries: 5,
     retryDelay: 500
   });
 }, W = async (e, r) => {
   const t = m(`${r.url}/design/dn_texteditor_back.aspx`, {
     ssid: e
-  }), a = await p(t), n = {
-    ...x(_(await a.text())),
+  }), a = await c(t), n = {
+    ...D(h(await a.text())),
     __EVENTTARGET: "btn_next_step"
-  }, c = new FormData();
-  for (const [o, i] of Object.entries(n))
-    c.append(o, i);
-  await p(t, {
+  }, i = new FormData();
+  for (const [o, s] of Object.entries(n))
+    i.append(o, s);
+  await c(t, {
     method: "POST",
-    body: c,
+    body: i,
     retries: 5,
     retryDelay: 500
   });
@@ -286,12 +286,12 @@ const x = (e) => {
   ApplyMask: t.ApplyMask,
   IsEmpty: !1
 }], Y = async (e, r, t, a, n) => {
-  const c = new FormData();
-  return c.append("frontImageList", JSON.stringify(t.map((o) => o.front ? P(r, o.front) : null))), c.append("frontCropInfo", JSON.stringify(t.map((o) => o.front ? N(o.front, a, n) : null))), c.append("frontDesignModePage", "dn_playingcards_mode_nf.aspx"), c.append("frontTextInfo", [...new Array(t.length)].map(() => "").join("%u25C7")), c.append("backImageList", JSON.stringify(t.map((o) => o.back ? P(r, o.back) : null))), c.append("backCropInfo", JSON.stringify(t.map((o) => o.back ? N(o.back, a, n) : null))), c.append("backTextInfo", [...new Array(t.length)].map(() => "").join("%u25C7")), c.append("backDesignModePage", "dn_playingcards_mode_nb.aspx"), c.append("expand", "null"), c.append("mapinfo", "[]"), p(m(`${r.url}/design/dn_keep_transition_data.aspx`, {
+  const i = new FormData();
+  return i.append("frontImageList", JSON.stringify(t.map((o) => o.front ? P(r, o.front) : null))), i.append("frontCropInfo", JSON.stringify(t.map((o) => o.front ? N(o.front, a, n) : null))), i.append("frontDesignModePage", "dn_playingcards_mode_nf.aspx"), i.append("frontTextInfo", [...new Array(t.length)].map(() => "").join("%u25C7")), i.append("backImageList", JSON.stringify(t.map((o) => o.back ? P(r, o.back) : null))), i.append("backCropInfo", JSON.stringify(t.map((o) => o.back ? N(o.back, a, n) : null))), i.append("backTextInfo", [...new Array(t.length)].map(() => "").join("%u25C7")), i.append("backDesignModePage", "dn_playingcards_mode_nb.aspx"), i.append("expand", "null"), i.append("mapinfo", "[]"), c(m(`${r.url}/design/dn_keep_transition_data.aspx`, {
     ssid: e
   }), {
     method: "POST",
-    body: c,
+    body: i,
     retries: 5,
     retryDelay: 500
   });
@@ -299,7 +299,7 @@ const x = (e) => {
   if (!r.name)
     return;
   const t = new FormData();
-  return t.append("name", r.name), p(m(`${r.url}/design/dn_project_save.aspx`, {
+  return t.append("name", r.name), c(m(`${r.url}/design/dn_project_save.aspx`, {
     ssid: e
   }), {
     method: "POST",
@@ -308,53 +308,49 @@ const x = (e) => {
     retryDelay: 500
   });
 }, B = async (e, r) => {
-  const t = r.reduce((o, i) => {
-    for (let d = 0; d < i.count; d++)
-      o.push(i);
+  const t = r.reduce((o, s) => {
+    for (let p = 0; p < s.count; p++)
+      o.push(s);
     return o;
-  }, []), a = await j(e, t);
-  await k(a, e, t), await H(a, e, t);
-  const { pixelInfo: n, unpickInfo: c } = await M(a, e);
-  return await J(a, e), await V(a, e), await W(a, e), await Y(a, e, t, n, c), await G(a, e), `${e.url}/design/dn_preview_layout.aspx?ssid=${a}`;
+  }, []), a = await k(e, t);
+  await j(a, e, t), await H(a, e, t);
+  const { pixelInfo: n, unpickInfo: i } = await M(a, e);
+  return await J(a, e), await V(a, e), await W(a, e), await Y(a, e, t, n, i), await G(a, e), `${e.url}/design/dn_preview_layout.aspx?ssid=${a}`;
 }, L = async (e, r) => {
-  const t = [], a = e.maxCards, n = Math.ceil(r.reduce((i, d) => i + d.count, 0) / a);
-  let c = 0, o = 0;
-  for (; c < r.length; ) {
-    const i = [];
-    let d = 0;
-    for (; d < a && c < r.length; ) {
-      const s = r[c], h = Math.min(s.count - o, a - d);
-      i.push(h == s.count ? s : {
-        ...s,
-        count: h
-      }), o += h, o >= s.count && (c += 1, o = 0), d += h;
+  const t = [], a = e.maxCards;
+  let n = 0, i = 0;
+  for (; n < r.length; ) {
+    const o = [];
+    let s = 0;
+    for (; s < a && n < r.length; ) {
+      const p = r[n], u = Math.min(p.count - i, a - s);
+      o.push(u == p.count ? p : {
+        ...p,
+        count: u
+      }), i += u, i >= p.count && (n += 1, i = 0), s += u;
     }
-    const f = n > 1 ? `${e.name} (${t.length + 1}/${n})` : e.name;
-    t.push(await B({
-      ...e,
-      name: f
-    }, i));
+    t.push(await B(e, o));
   }
   return t;
-}, X = async (e) => await (await p(`${e}/api/common/getdatetime.ashx`)).text().then((t) => t.replace(/\-/g, "/")), q = async (e, r, t) => {
+}, X = async (e) => await (await c(`${e}/api/common/getdatetime.ashx`)).text().then((t) => t.replace(/\-/g, "/")), q = async (e, r, t) => {
   const a = await X(e.url), n = new FormData();
   n.append("fileData", t), n.append("userName", ""), n.append("layer", r), n.append("st", a), n.append("pt", "0"), n.append("ip", "");
-  const c = await p(`${e.url}/uploader/up_product.aspx`, {
+  const i = await c(`${e.url}/uploader/up_product.aspx`, {
     method: "POST",
     body: n,
     retries: 5,
     retryDelay: 500
-  }), o = _(await c.text());
+  }), o = h(await i.text());
   return JSON.parse(T(o, '/html/body/form/input[@id="hidd_image_info"]/@value').textContent);
 }, U = async (e, r, t, a) => {
   const n = new FormData();
   n.append("photoindex", `${t}`), n.append("source", JSON.stringify(a)), n.append("face", r), n.append("width", `${e.width}`), n.append("height", `${e.height}`), n.append("dpi", `${e.dpi}`), n.append("auto", e.auto ? "Y" : "N"), n.append("scale", `${e.scale}`), n.append("filter", ""), n.append("productCode", e.product), n.append("designCode", r === "front" ? e.frontDesign : e.backDesign), n.append("sortNo", `${e.sortNo}`), n.append("applyMask", e.applyMask ? "Y" : "N");
-  const c = await p(`${e.url}/design/dn_product_analysis_photo.aspx`, {
+  const i = await c(`${e.url}/design/dn_product_analysis_photo.aspx`, {
     method: "POST",
     body: n,
     retries: 5,
     retryDelay: 500
-  }), o = I(await c.text());
+  }), o = I(await i.text());
   return JSON.parse(T(o, "/Values/Value/text()").textContent).CropInfo;
 }, z = (e, r) => ({
   ID: e.ID,
@@ -368,12 +364,12 @@ export {
   z as compressImageData,
   L as createAutoSplitProject,
   B as createProject,
-  j as initProject,
+  k as initProject,
   V as saveBackImageStep,
   H as saveBackSettings,
   W as saveBackTextStep,
   M as saveFrontImageStep,
-  k as saveFrontSettings,
+  j as saveFrontSettings,
   J as saveFrontTextStep,
   G as saveProject,
   Y as saveSession,
