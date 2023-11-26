@@ -456,7 +456,6 @@ export const createProject = async (settings: Settings, cards: UploadedImage[]) 
 export const createAutoSplitProject = async (settings: Settings, cards: UploadedImage[]) => {
   const projects: string[] = []
   const maxCardCount = settings.maxCards
-  const projectCount = Math.ceil(cards.reduce((value, card) => value + card.count, 0) / maxCardCount)
 
   let cardIndex = 0
   let cardCountOffset = 0
@@ -477,13 +476,7 @@ export const createAutoSplitProject = async (settings: Settings, cards: Uploaded
       }
       projectCardCount += count
     }
-    const name: string | undefined = projectCount > 1
-      ? `${settings.name} (${projects.length + 1}/${projectCount})`
-      : settings.name
-    projects.push(await createProject({
-      ...settings,
-      name: name,
-    }, projectCards))
+    projects.push(await createProject(settings, projectCards))
   }
   return projects
 }
