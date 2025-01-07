@@ -1,7 +1,6 @@
 import asyncio
 import json
 from io import StringIO
-from typing import Coroutine
 
 import aiohttp
 import lxml.html
@@ -10,22 +9,22 @@ CURATED_UNITS = {
   "mpc": [
     ("FI_7999", "Blank Game Cards (63 x 88mm)"),
     ("FI_569", "Blank Poker Cards (63.5 x 88.9mm)"),
-    ("FI_4332", "Blank Bridge Cards (57mm x 89mm)"),
-    ("FI_8854", "Blank Mini American Cards (41mm x 63mm)"),
-    ("FI_8866", "Blank Mini European Cards (44mm x 67mm)"),
+    ("FI_4332", "Blank Bridge Cards (57 x 89mm)"),
+    ("FI_8854", "Blank Mini American Cards (41 x 63mm)"),
+    ("FI_8866", "Blank Mini European Cards (44 x 67mm)"),
     ("FI_8007", "Blank Micro Cards (32 x 45mm)"),
-    ("FI_5073", "Blank Tarot Cards (70mm x 121mm)"),
-    ("FI_8459", "Blank Square Cards (70mm x 70mm)"),
-    ("FI_8005", "Blank Square Cards (89mm x 89mm)"),
-    ("FI_8892", "Blank Jumbo Cards (89mm x 127mm)"),
+    ("FI_5073", "Blank Tarot Cards (70 x 121mm)"),
+    ("FI_8459", "Blank Square Cards (70 x 70mm)"),
+    ("FI_8005", "Blank Square Cards (89 x 89mm)"),
+    ("FI_8892", "Blank Jumbo Cards (89 x 127mm)"),
   ],
   "ps": [
     ("FI_9896", "Blank Game Cards (63 x 88mm)"),
     ("FI_569", "Poker Cards (63.5 x 88.9mm)"),
-    ("FI_4332", "Bridge Cards (57mm x 89mm)"),
-    ("FI_21757", "Blank Mini European Cards (44mm x 67mm)"),
-    ("FI_7852", "Blank Tarot Cards (70mm x 121mm)"),
-    ("FI_21756", "Blank Square Cards (70mm x 70mm)"),
+    ("FI_4332", "Bridge Cards (57 x 89mm)"),
+    ("FI_21757", "Blank Mini European Cards (44 x 67mm)"),
+    ("FI_7852", "Blank Tarot Cards (70 x 121mm)"),
+    ("FI_21756", "Blank Square Cards (70 x 70mm)"),
   ],
 }
 
