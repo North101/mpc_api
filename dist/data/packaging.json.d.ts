@@ -761,11 +761,43 @@ declare const _default: {
       "name": "Plain double magnetic book box"
     },
     {
+      "code": "PB_13128",
+      "name": "Plain foil booster pack"
+    },
+    {
+      "code": "PB_13129",
+      "name": "Plain foil booster pack"
+    },
+    {
+      "code": "PB_13130",
+      "name": "Plain foil booster pack"
+    },
+    {
+      "code": "PB_13131",
+      "name": "Plain foil booster pack"
+    },
+    {
+      "code": "PB_13132",
+      "name": "Plain foil booster pack"
+    },
+    {
+      "code": "PB_13133",
+      "name": "Plain foil booster pack"
+    },
+    {
+      "code": "PB_13134",
+      "name": "Plain foil booster pack"
+    },
+    {
       "code": "PB_13135",
       "name": "Plain double rigid box"
     },
     {
       "code": "PB_13136",
+      "name": "Custom double rigid box"
+    },
+    {
+      "code": "PB_13138",
       "name": "Custom double rigid box"
     },
     {
@@ -1173,10 +1205,6 @@ declare const _default: {
       "name": "Custom tuck box"
     },
     {
-      "code": "PB_3882",
-      "name": "Custom tuck box"
-    },
-    {
       "code": "PB_3929",
       "name": "Custom tuck box"
     },
@@ -1202,10 +1230,6 @@ declare const _default: {
     },
     {
       "code": "PB_4132",
-      "name": "Custom tuck box"
-    },
-    {
-      "code": "PB_4179",
       "name": "Custom tuck box"
     },
     {
@@ -1517,10 +1541,6 @@ declare const _default: {
       "name": "Plain white tuck box"
     },
     {
-      "code": "PB_7316",
-      "name": "Plain white tuck box"
-    },
-    {
       "code": "PB_7366",
       "name": "Plain white tuck box"
     },
@@ -1550,10 +1570,6 @@ declare const _default: {
     },
     {
       "code": "PB_7585",
-      "name": "Plain white tuck box"
-    },
-    {
-      "code": "PB_7635",
       "name": "Plain white tuck box"
     },
     {

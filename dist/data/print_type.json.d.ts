@@ -81,24 +81,216 @@ declare const _default: {
       "name": "Holographic (front)"
     },
     {
+      "code": "EF_0493",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0494",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0495",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0496",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0497",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0498",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0499",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
       "code": "EF_050",
       "name": "Holographic (front)"
+    },
+    {
+      "code": "EF_0500",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0501",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0502",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0503",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0504",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0505",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0506",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0507",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0508",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0509",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
     },
     {
       "code": "EF_051",
       "name": "Holographic (front)"
     },
     {
+      "code": "EF_0510",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0511",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0512",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0513",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0514",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0515",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0516",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0517",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0518",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
       "code": "EF_052",
       "name": "Holographic (front)"
+    },
+    {
+      "code": "EF_0521",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0522",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0523",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0524",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0525",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0526",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0527",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0528",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0529",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
     },
     {
       "code": "EF_053",
       "name": "Holographic (front)"
     },
     {
+      "code": "EF_0530",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0531",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0532",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0533",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0534",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0535",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0536",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0537",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0538",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0539",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
       "code": "EF_054",
       "name": "Holographic (front)"
+    },
+    {
+      "code": "EF_0540",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
+    },
+    {
+      "code": "EF_0541",
+      "name": "Spot bronze cold foil (back) + full color print (front)"
+    },
+    {
+      "code": "EF_0542",
+      "name": "Spot bronze cold foil (front & back) \u2013 no color print"
     },
     {
       "code": "EF_055",
@@ -137,10 +329,6 @@ declare const _default: {
       "name": "Holographic (front)"
     },
     {
-      "code": "EF_064",
-      "name": "High gloss (back) + full color print"
-    },
-    {
       "code": "EF_066",
       "name": "Holographic (front)"
     },
@@ -162,14 +350,6 @@ declare const _default: {
     },
     {
       "code": "EF_071",
-      "name": "High gloss (back) + full color print"
-    },
-    {
-      "code": "EF_072",
-      "name": "High gloss (back) + full color print"
-    },
-    {
-      "code": "EF_073",
       "name": "High gloss (back) + full color print"
     },
     {
@@ -1783,6 +1963,38 @@ declare const _default: {
     {
       "code": "EF_483",
       "name": "High gloss (back) + full color print"
+    },
+    {
+      "code": "EF_542",
+      "name": "Bronze gilt edge + full color print"
+    },
+    {
+      "code": "EF_543",
+      "name": "Bronze gilt edge + full color print"
+    },
+    {
+      "code": "EF_544",
+      "name": "Bronze gilt edge + full color print"
+    },
+    {
+      "code": "EF_545",
+      "name": "Bronze gilt edge + full color print"
+    },
+    {
+      "code": "EF_546",
+      "name": "Bronze gilt edge + full color print"
+    },
+    {
+      "code": "EF_547",
+      "name": "Bronze gilt edge + full color print"
+    },
+    {
+      "code": "EF_548",
+      "name": "Bronze gilt edge + full color print"
+    },
+    {
+      "code": "EF_549",
+      "name": "Bronze gilt edge + full color print"
     }
   ],
   "ps": [
